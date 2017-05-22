@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import Errors from 'ember-validations/errors';
 import Base from 'ember-validations/validators/base';
-import getOwner from 'ember-getowner-polyfill';
 
 const {
   A: emberArray,
@@ -15,7 +14,8 @@ const {
   isNone,
   isPresent,
   set,
-  warn
+  warn,
+  getOwner,
 } = Ember;
 
 const setValidityMixin = Mixin.create({
@@ -113,6 +113,8 @@ export default Mixin.create(setValidityMixin, {
 
     if (get(this, 'validations') === undefined) {
       this.validations = {};
+    } else {
+      this.validations = get(this, 'validations');
     }
 
     this.buildValidators();
