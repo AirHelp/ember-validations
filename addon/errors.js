@@ -12,7 +12,7 @@ export default EmberObject.extend({
   unknownProperty(property) {
     run.scheduleOnce('afterRender', this, function() {
       set(this, property, emberArray());
-      return get(this, property);
     });
+    return get(this, property);
   }
 });
